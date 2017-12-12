@@ -12,6 +12,9 @@ public class Dragon
     private int y;
     private int size;
     private Color c;
+    private int totalwidth;
+    private int totalheight;
+    private int headbasey;
 
     /**
      * Default Constructor for objects of class Dragon
@@ -46,18 +49,18 @@ public class Dragon
     public void drawDragon(Graphics g)
     {
         int bodySizehw = size*25;
+        totalwidth = 0;
+        totalheight = 0;
+        g.setColor(c); 
+        g.drawOval(x, y, bodySizehw, bodySizehw);
+        totalwidth += bodySizehw;
+        totalheight += bodySizehw;        
         int necksquareh = bodySizehw / 5;
         int necksquarew = bodySizehw / 3;
         int neckBeginy = y - necksquareh + (bodySizehw /5);
         int neckBeginx = x+(bodySizehw - (bodySizehw /10));
         int cloneneckx= neckBeginx;
         int clonenecky= neckBeginy;
-        int totalwidth = 0;
-        int totalheight = 0;
-        g.setColor(c); // Watermelon Dragon.
-        g.drawOval(x, y, bodySizehw, bodySizehw);
-        totalwidth += bodySizehw;
-        totalheight += bodySizehw;
         g.drawRect(neckBeginx, neckBeginy, necksquarew, necksquareh);
         totalwidth += necksquarew;
         totalheight +=necksquareh;
@@ -73,7 +76,7 @@ public class Dragon
         int headbaseh = necksquareh*3;
         int headbasew = necksquarew*3;
         int headbasex= cloneneckx + necksquarew;
-        int headbasey = clonenecky - (headbaseh);
+        headbasey = clonenecky - (headbaseh);
         g.drawRect(headbasex, headbasey, headbasew, headbaseh);
         totalheight +=headbaseh;
         totalwidth += headbasew;
@@ -109,7 +112,7 @@ public class Dragon
         int feet2startx = leg2endx;
         int feet2starty = leg2endy;
         int feet2endx = leg2endx +(bodySizehw/3);
-        int feet2endy = leg2endy+(bodySizehw/6);;
+        int feet2endy = leg2endy+(bodySizehw/6);
         g.drawLine(feet1startx, feet1starty, feet1endx, feet1endy);
         totalheight += (feet1endy - feet1starty);
         g.drawLine(feet2startx, feet2starty, feet2endx, feet2endy);
@@ -120,10 +123,26 @@ public class Dragon
         int clearRecty = headbasey;
         int clearRectw = totalwidth;
         int clearRecth = totalheight;
+        g.setColor(Color.white);
+        g.fillRect(clearRectx, clearRecty, clearRectw, clearRecth);
+    }
+    
+    public void growDragon(Graphics g) throws InterruptedException{
+       for(int x = 1; x<=2; x++){
+           clearDragon(g);
+           setDragonSize(size+x);
+           drawDragon(g);
+           Thread.sleep(3000);
+           clearDragon(g);
+        }
     }
     /**
      * Mutator Methods
      */
+    public void setDragonSize(int psize){
+        size = psize;
+    }
+    
     
     /**
      * toString

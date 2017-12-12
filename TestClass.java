@@ -19,6 +19,16 @@ public class TestClass
        Thread.sleep(3000);
        Dragon cheese = new Dragon(500,300,2,Color.red);
        cheese.drawDragon(g);
+       Thread.sleep(3000);
+       cheese.growDragon(g);
+       
+       /*
+       for(int x = 0; x<=2; x++){
+           cheese.drawDragon(g);
+           Thread.sleep(3000);
+           cheese.clearDragon(g);
+        }
+       */
      
        //System.out.println(draggy);
        //System.out.println(cheese);
