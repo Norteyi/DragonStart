@@ -133,8 +133,25 @@ public class Dragon
            setDragonSize(size+x);
            drawDragon(g);
            Thread.sleep(3000);
-           clearDragon(g);
+           if(x != 2){
+        	   clearDragon(g);
+           }
         }
+    }
+    
+    public void changeDragonColor(Graphics g, Color nc){
+    	setDragonColor(nc);
+    	clearDragon(g);
+    	drawDragon(g);    	
+    }
+    
+    public void moveDragon(Graphics g, int nx) throws InterruptedException{
+    	for(int v = 1; v<=5; v++){
+        	clearDragon(g);
+        	x += nx;
+        	drawDragon(g);
+        	Thread.sleep(1000);    		
+    	}
     }
     /**
      * Mutator Methods
@@ -143,6 +160,9 @@ public class Dragon
         size = psize;
     }
     
+    public void setDragonColor(Color pc){
+    	c = pc;
+    }
     
     /**
      * toString

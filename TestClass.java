@@ -21,6 +21,9 @@ public class TestClass
        cheese.drawDragon(g);
        Thread.sleep(3000);
        cheese.growDragon(g);
+       cheese.changeDragonColor(g, Color.BLUE);
+       Thread.sleep(1000);
+       cheese.moveDragon(g, 20);
        
        /*
        for(int x = 0; x<=2; x++){
