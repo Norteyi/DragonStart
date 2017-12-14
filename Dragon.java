@@ -46,13 +46,18 @@ public class Dragon
      * drawDragon(Graphics g)
      * Starting of drawing, complete your Dragon....
      */
-    public void drawDragon(Graphics g)
+    public void drawDragon(Graphics g, String skin)
     {
         int bodySizehw = size*25;
         totalwidth = 0;
         totalheight = 0;
-        g.setColor(c); 
-        g.drawOval(x, y, bodySizehw, bodySizehw);
+        g.setColor(c);
+        if(skin.equals("empty")){
+            g.drawOval(x, y, bodySizehw, bodySizehw);
+        }
+        if(skin.equals("fill")){
+            g.fillOval(x, y, bodySizehw, bodySizehw);
+        }
         totalwidth += bodySizehw;
         totalheight += bodySizehw;        
         int necksquareh = bodySizehw / 5;
@@ -61,14 +66,24 @@ public class Dragon
         int neckBeginx = x+(bodySizehw - (bodySizehw /10));
         int cloneneckx= neckBeginx;
         int clonenecky= neckBeginy;
-        g.drawRect(neckBeginx, neckBeginy, necksquarew, necksquareh);
+        if(skin.equals("empty")){
+            g.drawRect(neckBeginx, neckBeginy, necksquarew, necksquareh);
+        }
+        if(skin.equals("fill")){
+            g.fillRect(neckBeginx, neckBeginy, necksquarew, necksquareh);
+        }
         totalwidth += necksquarew;
         totalheight +=necksquareh;
         cloneneckx -= (necksquarew/3);
         for(int n = 1; n <= 2; n++){
             cloneneckx += necksquarew;
             clonenecky -= necksquareh;
-            g.drawRect(cloneneckx, clonenecky, necksquarew, necksquareh);
+            if(skin.equals("empty")){
+                g.drawRect(cloneneckx, clonenecky, necksquarew, necksquareh);
+            }
+            if(skin.equals("fill")){
+                g.fillRect(cloneneckx, clonenecky, necksquarew, necksquareh);
+            }
             totalwidth += necksquarew;
             totalheight += necksquareh;
             cloneneckx -= (necksquarew/3);
@@ -77,14 +92,30 @@ public class Dragon
         int headbasew = necksquarew*3;
         int headbasex= cloneneckx + necksquarew;
         headbasey = clonenecky - (headbaseh);
-        g.drawRect(headbasex, headbasey, headbasew, headbaseh);
+        if(skin.equals("empty")){
+            g.drawRect(headbasex, headbasey, headbasew, headbaseh);
+        }
+        if(skin.equals("fill")){
+            g.fillRect(headbasex, headbasey, headbasew, headbaseh);
+        }
         totalheight +=headbaseh;
         totalwidth += headbasew;
         int headmouthh = headbaseh/3;
         int headmouthw = headbasew - (headbasew/3);
         int headmouthx = headbasex + (headbasew/3);
         int headmouthy = headbasey + (headbaseh);
-        g.drawRect(headmouthx, headmouthy, headmouthw, headmouthh);
+        if(skin.equals("empty")){
+            g.drawRect(headmouthx, headmouthy, headmouthw, headmouthh);
+        }
+        if(skin.equals("fill")){
+            g.fillRect(headmouthx, headmouthy, headmouthw, headmouthh);
+        }
+        
+
+        
+        if(skin.equals("fill")){
+            g.setColor(Color.white);
+        }
         for(int z =0; z<=2; z++){
             int mouthsep = headmouthw/3;
             int sep1 = headmouthx + (mouthsep*z);
@@ -94,6 +125,7 @@ public class Dragon
             int teethy[] = {headmouthy,(headmouthy+headmouthh),headmouthy};
             g.fillPolygon(teethx, teethy, 3);
         }
+        g.setColor(c);
         int leg1startx = x+(bodySizehw/3);
         int leg1starty = y + bodySizehw;
         int leg1endx = x+(bodySizehw/3);
@@ -131,27 +163,30 @@ public class Dragon
        for(int x = 1; x<=2; x++){
            clearDragon(g);
            setDragonSize(size+x);
-           drawDragon(g);
+           drawDragon(g,"empty");
            Thread.sleep(3000);
            if(x != 2){
-        	   clearDragon(g);
+               clearDragon(g);
            }
         }
     }
     
     public void changeDragonColor(Graphics g, Color nc){
-    	setDragonColor(nc);
-    	clearDragon(g);
-    	drawDragon(g);    	
+        setDragonColor(nc);
+        clearDragon(g);
+        drawDragon(g,"empty");      
     }
     
     public void moveDragon(Graphics g, int nx) throws InterruptedException{
-    	for(int v = 1; v<=5; v++){
-        	clearDragon(g);
-        	x += nx;
-        	drawDragon(g);
-        	Thread.sleep(1000);    		
-    	}
+        for(int v = 1; v<=5; v++){
+            clearDragon(g);
+            x += nx;
+            drawDragon(g,"empty");
+            Thread.sleep(1000);         
+        }
+    }
+    public void fillDragon(Graphics g){
+        drawDragon(g,"fill");
     }
     /**
      * Mutator Methods
@@ -161,7 +196,7 @@ public class Dragon
     }
     
     public void setDragonColor(Color pc){
-    	c = pc;
+        c = pc;
     }
     
     /**
