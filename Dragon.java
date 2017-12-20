@@ -15,29 +15,37 @@ public class Dragon
     private int totalwidth;
     private int totalheight;
     private int headbasey;
+    private int feet1endy;
+    private Color background;
 
     /**
      * Default Constructor for objects of class Dragon
      */
-    public Dragon()
+    public Dragon(Color pbackground)
     {
         // initialise instance variables
         x = 200;
         y = 300;
         size = 1;
         c = Color.black; // INS comment here.
+        background = pbackground;
     }
-    public Dragon(int x,int y, int size, Color c){
+    public Dragon(Color pbackground, int x,int y, int size, Color c){
         this.x = x;
         this.y = y;
         this.size = size;
         this.c = c; // You saw nothing.
+        background = pbackground;
     }
         
     
     /**
      * Overloaded Constructors go here
      */
+    
+    public int getDragonBottom(){
+        return feet1endy;
+    }
 
     /** 
      * Accessor Methods
@@ -140,7 +148,7 @@ public class Dragon
         int feet1startx = leg1endx;
         int feet1starty = leg1endy;
         int feet1endx = leg2endx;
-        int feet1endy = leg2endy +(bodySizehw/6);;
+        feet1endy = leg2endy +(bodySizehw/6);;
         int feet2startx = leg2endx;
         int feet2starty = leg2endy;
         int feet2endx = leg2endx +(bodySizehw/3);
@@ -155,7 +163,7 @@ public class Dragon
         int clearRecty = headbasey;
         int clearRectw = totalwidth;
         int clearRecth = totalheight;
-        g.setColor(Color.white);
+        g.setColor(background);
         g.fillRect(clearRectx, clearRecty, clearRectw, clearRecth);
     }
     
@@ -203,6 +211,7 @@ public class Dragon
      * toString
      */
     public String toString(){
-        return "x coor: " + x + " y coord: " + y + " size: " + size + " Color: " + c;
+        String colorstring = c.toString();
+        return "x coor: " + x + " y coord: " + y + " size: " + size + " Color: " + colorstring;
     }
 }

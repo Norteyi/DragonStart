@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Scanner;
 /**
  * Write a description of class TestClass here.
  *
@@ -9,15 +10,37 @@ public class TestClass
 {
 
    public static void main(String args[]) throws InterruptedException{
-       DrawingPanel panel = new DrawingPanel(1000,1000);
+       int width = 1000;
+       int height = 1000;
+       int dragonprevx=0;
+       int dragonx;
+       int dragonprevy=0;
+       int dragony;
+       Color background;
+       
+       DrawingPanel panel = new DrawingPanel(width,height);
        Graphics g = panel.getGraphics();
        
-       Dragon draggy = new Dragon();
+       Scanner user = new Scanner(System.in);
+       
+       Scene sky = new Scene(width,height);
+       background = sky.getskyColor();
+       sky.drawScene(g);
+       sky.drawGround(g);
+       
+       do{
+           System.out.println("what do you want the x value to be");
+           dragonx = user.nextInt();
+        }
+        while(dragonprevx == dragonx);
+          
+       
+       Dragon draggy = new Dragon(background);
        
        draggy.drawDragon(g,"empty");
        
        Thread.sleep(3000);
-       Dragon cheese = new Dragon(500,300,2,Color.red);
+       Dragon cheese = new Dragon(background, 500,300,2,Color.red);
        cheese.drawDragon(g,"empty");
        Thread.sleep(3000);
        cheese.growDragon(g);
@@ -27,15 +50,9 @@ public class TestClass
        Thread.sleep(1000);
        cheese.fillDragon(g);
        
-       /*
-       for(int x = 0; x<=2; x++){
-           cheese.drawDragon(g);
-           Thread.sleep(3000);
-           cheese.clearDragon(g);
-        }
-       */
-     
-       //System.out.println(draggy);
-       //System.out.println(cheese);
+       
+       
+       System.out.println(draggy);
+       System.out.println(cheese);
     }
 }
