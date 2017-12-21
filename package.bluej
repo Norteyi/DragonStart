@@ -1,12 +1,12 @@
 #BlueJ package file
 dependency1.from=TestClass
-dependency1.to=DrawingPanel
+dependency1.to=Dragon
 dependency1.type=UsesDependency
 dependency2.from=TestClass
-dependency2.to=Scene
+dependency2.to=DrawingPanel
 dependency2.type=UsesDependency
 dependency3.from=TestClass
-dependency3.to=Dragon
+dependency3.to=Scene
 dependency3.type=UsesDependency
 editor.fx.0.height=734
 editor.fx.0.width=807
