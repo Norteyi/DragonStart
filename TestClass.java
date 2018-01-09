@@ -14,16 +14,17 @@ public class TestClass
        int width = 1000;
        int height = 1000;
        int dragonprevx=0;
-       int dragonx;
+       int dragonx = 0;
        int dragonprevy=0;
-       int dragony;
-       int dragonsize;
-       int dragonnum;
+       int dragony = 0;
+       int dragonsize = 0;
+       int dragonnum =0;
        boolean dColor = false;
-       String[] colorList = {"blue","BLUE", "red", "RED", "GREEN", "green"};
+       String dColors = null;
+
        ArrayList<Dragon> dragonList = new ArrayList<Dragon>();
        Color background;
-       Color dragonColor;
+       Color dragonColor = null;
        
        DrawingPanel panel = new DrawingPanel(width,height);
        Graphics g = panel.getGraphics();
@@ -34,9 +35,11 @@ public class TestClass
        background = sky.getskyColor();
        sky.drawScene(g);
        sky.drawGround(g);
-       
-       System.out.println("How many dragons do you want (1-3)");
-       dragonnum = user.nextInt();
+       do {
+    	   System.out.println("How many dragons do you want (1-3)");
+    	   dragonnum = user.nextInt();
+       }
+       while(dragonnum != 1 && dragonnum !=2 && dragonnum != 3);
        for(int x = 1; x<= dragonnum; x++){
            do{
                System.out.println("what do you want the x starting coordinate to be");
@@ -61,43 +64,54 @@ public class TestClass
             do{
                 dColor = false;
                 System.out.println("What color do you want your dragon to be? Blue Green or Red");
-                dColor = user.nextLine();
-                if(dColor = "blue" || "BLUE"){
+                dColors = user.nextLine();
+                if(dColors.equals("blue") || dColors.equals("BLUE")){
                     dragonColor = Color.blue;
                     dColor = true;
                 }
                 
-                if(dColor = "red" || "RED"){
+                if(dColors.equals("red") || dColors.equals("RED")){
                     dragonColor = Color.red;
                     dColor = true;
                 }
               
-                if(dColor = "green" || "green"){
-                    dragonColor = Color.blue;
+                if(dColors.equals("green") ||dColors.equals("GREEN")){
+                    dragonColor = Color.green;
                     dColor = true;
                 }
             }
             while(dColor == false);
-        }
+            if(x==1) {
+            	dragonList.add(new Dragon(background, dragonx, dragony, dragonsize, dragonColor));
+            }
+            if(x==2) {
+            	dragonList.add(new Dragon(background, dragonx, dragony, dragonsize, dragonColor));
+            }
+            if(x==3) {
+            	dragonList.add(new Dragon(background, dragonx, dragony, dragonsize, dragonColor));
+            }
+        }    
+       	for(int x = 0; x<dragonnum; x++) {
+       		dragonList.get(x).drawDragon(g, "empty");
+       	}
+       	Thread.sleep(3000);
+       	for(int x = 0; x<dragonnum; x++) {
+       		dragonList.get(x).growDragon(g);
+       	}
+       	for(int x = 0; x<dragonnum; x++) {
+       		dragonList.get(x).changeDragonColor(g, Color.BLUE );
+       	}
+       	Thread.sleep(1000);
+       	for(int x = 0; x<dragonnum; x++) {
+       		dragonList.get(x).moveDragon(g, 20);
+       	}
+       	Thread.sleep(1000);
+       	for(int x = 0; x<dragonnum; x++) {
+       		dragonList.get(x).fillDragon(g);
+       	}       	
+       	for(int x = 0; x<dragonnum; x++) {
+       		System.out.println(dragonList.get(x));
+       	}       
        
-       Dragon draggy = new Dragon(background);
-       
-       draggy.drawDragon(g,"empty");
-       
-       Thread.sleep(3000);
-       Dragon cheese = new Dragon(background, 500,300,2,Color.red);
-       cheese.drawDragon(g,"empty");
-       Thread.sleep(3000);
-       cheese.growDragon(g);
-       cheese.changeDragonColor(g, Color.BLUE);
-       Thread.sleep(1000);
-       cheese.moveDragon(g, 20);
-       Thread.sleep(1000);
-       cheese.fillDragon(g);
-       
-       
-       
-       System.out.println(draggy);
-       System.out.println(cheese);
     }
 }
