@@ -36,8 +36,8 @@ public class TestClass
        sky.drawScene(g);
        sky.drawGround(g);
        do {
-    	   System.out.println("How many dragons do you want (1-3)");
-    	   dragonnum = user.nextInt();
+           System.out.println("How many dragons do you want (1-3)");
+           dragonnum = user.nextInt();
        }
        while(dragonnum != 1 && dragonnum !=2 && dragonnum != 3);
        for(int x = 1; x<= dragonnum; x++){
@@ -82,36 +82,39 @@ public class TestClass
             }
             while(dColor == false);
             if(x==1) {
-            	dragonList.add(new Dragon(background, dragonx, dragony, dragonsize, dragonColor));
+                dragonList.add(new Dragon(background, dragonx, dragony, dragonsize, dragonColor));
             }
             if(x==2) {
-            	dragonList.add(new Dragon(background, dragonx, dragony, dragonsize, dragonColor));
+                dragonList.add(new Dragon(background, dragonx, dragony, dragonsize, dragonColor));
             }
             if(x==3) {
-            	dragonList.add(new Dragon(background, dragonx, dragony, dragonsize, dragonColor));
+                dragonList.add(new Dragon(background, dragonx, dragony, dragonsize, dragonColor));
             }
         }    
-       	for(int x = 0; x<dragonnum; x++) {
-       		dragonList.get(x).drawDragon(g, "empty");
-       	}
-       	Thread.sleep(3000);
-       	for(int x = 0; x<dragonnum; x++) {
-       		dragonList.get(x).growDragon(g);
-       	}
-       	for(int x = 0; x<dragonnum; x++) {
-       		dragonList.get(x).changeDragonColor(g, Color.BLUE );
-       	}
-       	Thread.sleep(1000);
-       	for(int x = 0; x<dragonnum; x++) {
-       		dragonList.get(x).moveDragon(g, 20);
-       	}
-       	Thread.sleep(1000);
-       	for(int x = 0; x<dragonnum; x++) {
-       		dragonList.get(x).fillDragon(g);
-       	}       	
-       	for(int x = 0; x<dragonnum; x++) {
-       		System.out.println(dragonList.get(x));
-       	}       
-       
+        for(int x = 0; x<dragonnum; x++) {
+            dragonList.get(x).drawDragon(g, "empty");
+        }
+        Thread.sleep(3000);
+        for(int x = 0; x<dragonnum; x++) {
+            dragonList.get(x).growDragon(g);
+        }
+        for(int x = 0; x<dragonnum; x++) {
+            dragonList.get(x).changeDragonColor(g, Color.BLUE );
+        }
+        Thread.sleep(1000);
+        for(int x = 0; x<dragonnum; x++) {
+            dragonList.get(x).moveDragon(g, 20);
+        }
+        Thread.sleep(1000);
+        for(int x = 0; x<dragonnum; x++) {
+            dragonList.get(x).fillDragon(g);
+        }           
+        for(int x = 0; x<dragonnum; x++) {
+            System.out.println(dragonList.get(x));
+        }       
+        speakingDragon talky = new speakingDragon(background);
+        talky.drawdragon();
+        String text = talky.setText("hi guys");
+        talky.speak();
     }
 }
